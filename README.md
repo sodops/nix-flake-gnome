@@ -1,55 +1,87 @@
 # NixOS Configuration
 
-A modular, flake-based NixOS configuration tailored for stability and reproducibility.
+A robust, modular, and reproducible NixOS configuration managed with **Nix Flakes** and **Home Manager**. This repository defines the entire system state, ensuring consistency across deployments.
 
-## Project Structure
+## 🌟 Features
 
-This configuration adopts a modular architecture separating system-level configuration from user-specific settings:
+- **Modular Architecture**: Clean separation of concerns using a module-based directory structure.
+- **Flake-based Management**: Dependencies are pinned and reproducible.
+- **Desktop Environment**: GNOME Shell optimized with essential extensions (Blur my Shell, GSConnect, etc.).
+- **Shell Experience**: Zsh configured with **Starship** prompt, syntax highlighting, and autosuggestions.
+- **Optimization**: Automatic garbage collection, SSD trimming, and ZRAM swap enabled.
+- **Network**: Pre-configured firewall and networking optimizations.
+
+## 📂 Project Structure
 
 ```
 nixos-config/
-├── modules/               # System-wide configurations
-│   ├── core/              # Bootloader, User management, Locale, Optimization
-│   ├── desktop/           # Desktop Environment (GNOME), Display Manager
-│   ├── networking/        # NetworkManager, Firewall rules
-│   └── programs/          # System-level packages
-├── home/                  # User-space configurations (Home Manager)
+├── modules/               # System-level modules
+│   ├── core/              # Bootloader, User, Locale, Optimization
+│   ├── desktop/           # Graphics, Audio, Display Manager (GDM)
+│   ├── networking/        # NetworkManager, Firewall, DNS
+│   └── programs/          # System-wide packages (Docker, Virt-manager)
+├── home/                  # User-level configuration (Home Manager)
 │   ├── shell/             # Zsh, Starship, Git, Aliases
-│   └── desktop/           # User Applications, Theming, Cursor
-├── flake.nix              # Entry point ensuring reproducible dependency versions
-├── configuration.nix      # Main system entry point importing modules
-└── Makefile               # Automation for maintenance tasks
+│   └── desktop/           # User Applications, Theming, GNOME Extensions
+├── flake.nix              # Entry point & Dependency definitions
+├── configuration.nix      # Main system assembler
+└── Makefile               # Automation scripts
 ```
 
-## Management
+## 🛠️ Installation
 
-### System Updates
+### Bootstrap (First-time installation)
 
-To apply changes to the configuration:
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/sodops/nix-flake-gnome.git ~/nixos-config
+   cd ~/nixos-config
+   ```
 
-```bash
-# Using the provided script
-./apply.sh
+2. **Generate Hardware Config (if on new hardware):**
+   ```bash
+   # Overwrite the existing hardware-configuration.nix with the one for the current machine
+   nixos-generate-config --show-hardware-config > hardware-configuration.nix
+   ```
 
-# Alternatively, using Make
-make
-```
+3. **Apply Configuration:**
+   ```bash
+   nixos-rebuild switch --flake .#sodiq
+   ```
 
-### Manual Rebuild
+## ⚡ Management Commands
 
-If manual intervention is required:
+This configuration includes convenient Zsh aliases for common tasks:
 
-```bash
-sudo nixos-rebuild switch --flake /home/sodiq/nixos-config#sodiq
-```
+| Command     | Description |
+| ----------- | ----------- |
+| `update`    | Rebuilds the system using the flake (applies changes). |
+| `clean`     | Runs garbage collection (`nix-collect-garbage -d`) to free up space. |
+| `hm-switch` | Applies only Home Manager changes (faster than full system update). |
+| `ll`        | Detailed list of files (`ls -l`). |
 
-## Features
+## 📦 Software Overview
 
-- **Shell Environment**: Zsh configured with Starship prompt for enhanced productivity.
-- **Version Pinning**: The `nixpkgs` input is pinned to a specific commit hash to ensure consistent builds and minimize download bandwith.
-- **Desktop Environment**: GNOME optimized with essential extensions (GSConnect, Blur my Shell, Caffeine, etc.).
-- **Reproducibility**: Entire system state is defined declaratively.
+### System Packages
+- **DevOps**: Docker, Kubernetes (kubectl, helm), Terraform, Ansible.
+- **Development**: Python 3, Node.js, Git.
+- **Utilities**: Vim, wget, curl, htop, neofetch.
+
+### User Packages & Extensions
+- **Apps**: VS Code, Chrome, Firefox, Telegram, Discord, Spotify, OBS Studio.
+- **Extensions**: 
+  - **GSConnect** (Android integration)
+  - **Blur my Shell** (Aesthetics)
+  - **Caffeine** (Prevent sleep)
+  - **AppIndicator** (Tray icons)
+  - **Coverflow Alt-Tab** (Window switching)
+
+## 🔧 Customization
+
+- **To add system packages:** Edit `modules/programs/default.nix`.
+- **To add user packages:** Edit `home/desktop/default.nix`.
+- **To change shell/git settings:** Edit `home/shell/default.nix`.
 
 ## License
 
-This project is licensed under the MIT License.
+This configuration is released under the **MIT License**.
