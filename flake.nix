@@ -2,7 +2,7 @@
   description = "Sodiqning NixOS va Home Manager konfiguratsiyasi";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/d03088749a110d52a4739348f39a63f84bb0be14";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -23,6 +23,12 @@ git clone https://github.com/sodops/nix-flake-gnome.git /home/sodiq/nixos-config
 cd /home/sodiq/nixos-config
 
 # Sistemani yangilash
+make
+
+# Yoki (agar make bo'lmasa)
+./apply.sh
+
+# Qo'lda yangilash
 sudo nixos-rebuild switch --flake .#sodiq
 ```
 
