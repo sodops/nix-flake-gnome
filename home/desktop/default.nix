@@ -12,7 +12,18 @@
   # Paketlar ro'yxati
   home.packages = with pkgs; [
     bibata-cursors
-    gnomeExtensions.gsconnect # Add package explicitly
+    # GNOME Extensions
+    gnomeExtensions.gsconnect
+    gnomeExtensions.appindicator
+    gnomeExtensions.app-name-indicator
+    gnomeExtensions.auto-move-windows
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.caffeine
+    gnomeExtensions.coverflow-alt-tab
+    gnomeExtensions.impatience
+    gnomeExtensions.launch-new-instance
+    gnomeExtensions.window-is-ready-remover
+
     telegram-desktop
     google-chrome
     discord
@@ -30,6 +41,15 @@
       disable-user-extensions = false;
       enabled-extensions = [
         "gsconnect@andyholmes.github.io"
+        "appindicatorsupport@rgcjonas.gmail.com"
+        "appnameindicator@dev64.xyz"
+        "auto-move-windows@gnome-shell-extensions.gcampax.github.com"
+        "blur-my-shell@aunetx"
+        "caffeine@patapon.info"
+        "CoverflowAltTab@palatis.blogspot.com"
+        "impatience@gfxmonk.net"
+        "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
+        "windowIsReady_Remover@nunofarruca@gmail.com"
       ];
     };
   };
