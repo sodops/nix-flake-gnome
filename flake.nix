@@ -2,53 +2,58 @@
   description = "Sodiqning NixOS va Home Manager konfiguratsiyasi";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/d03088749a110d52a4739348f39a63f84bb0be14";
+    # Nixpkgs - ma'lum bir versiyaga qulflangan (2026-01-10)
+    nixpkgs.url = "github:nixos/nixpkgs/d03088749a110d52a4739348f39a63f84bb0be14"; 
+    
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     antigravity-nix = {
       url = "github:jacopone/antigravity-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, antigravity-nix, ... }: 
+  # 'inputs@' qo'shish orqali barcha inputlarni bitta o'zgaruvchiga olamiz
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }: 
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in {
-      # NixOS sistema konfiguratsiyasi
       nixosConfigurations.sodiq = nixpkgs.lib.nixosSystem {
         inherit system;
+        
+        # Tizim modullariga 'inputs'ni uzatish (bu juda muhim!)
+        specialArgs = { inherit inputs; };
+
         modules = [
           ./configuration.nix
           ./hardware-configuration.nix
           
-          # Home Manager ni NixOS module sifatida qo'shish
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.sodiq = import ./home.nix;
             
-            # Antigravity ni home-manager orqali qo'shish
-            home-manager.extraSpecialArgs = {
-              inherit antigravity-nix system;
-            };
+            # Home Manager modullariga maxsus o'zgaruvchilarni uzatish
+            home-manager.extraSpecialArgs = { inherit inputs; };
           }
         ];
       };
 
-      # Home Manager standalone konfiguratsiyasi (ixtiyoriy)
+      # standalone konfiguratsiya odatda 'nixos-rebuild' uchun shart emas,
+      # lekin u ham 'inputs'dan foydalanishi kerak
       homeConfigurations.sodiq = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [
-          ./home.nix
+        extraSpecialArgs = { inherit inputs; };
+        modules = [ 
+          ./home.nix 
           {
-            home.packages = [
-              antigravity-nix.packages.${system}.default
-            ];
+            # inputs'ni module argumenti sifatida ham qo'shamiz
+            _module.args = { inherit inputs; };
           }
         ];
       };

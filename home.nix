@@ -1,9 +1,12 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 {
   home.username = "sodiq";
   home.homeDirectory = "/home/sodiq";
   programs.home-manager.enable = true;
   programs.git.enable = true;
+  
+  # Versiya tekshiruvini o'chirish (nixpkgs qulflangani uchun)
+  home.enableNixpkgsReleaseCheck = false;
   
   # Faqat kursor sozlamalari (Tema default bo'ladi)
   home.pointerCursor = {
@@ -28,6 +31,7 @@
     postman
     obs-studio
     firefox
+    inputs.antigravity-nix.packages.${pkgs.system}.default
   ];
 
   # GSConnect background xizmati
