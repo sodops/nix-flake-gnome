@@ -19,7 +19,7 @@ nixos-config/
 
 ```bash
 # Repositoryni clone qilish
-git clone <your-repo-url> /home/sodiq/nixos-config
+git clone https://github.com/sodops/nix-flake-gnome.git /home/sodiq/nixos-config
 cd /home/sodiq/nixos-config
 
 # Sistemani yangilash
