@@ -12,6 +12,7 @@
   # Paketlar ro'yxati
   home.packages = with pkgs; [
     bibata-cursors
+    gnomeExtensions.gsconnect # Add package explicitly
     telegram-desktop
     google-chrome
     discord
@@ -22,6 +23,16 @@
     firefox
     inputs.antigravity-nix.packages.${pkgs.system}.default
   ];
+
+  # GNOME Extensions sozlamalari (yoqish)
+  dconf.settings = {
+    "org/gnome/shell" = {
+      disable-user-extensions = false;
+      enabled-extensions = [
+        "gsconnect@andyholmes.github.io"
+      ];
+    };
+  };
 
   # GSConnect background xizmati
   systemd.user.services.gsconnect = {
