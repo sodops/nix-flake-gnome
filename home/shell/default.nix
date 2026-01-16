@@ -18,7 +18,7 @@
     
     shellAliases = {
       ll = "ls -l";
-      update = "sudo nixos-rebuild switch --flake .";
+      update = "sudo nixos-rebuild switch --flake .#sodiq";
       hm-switch = "home-manager switch --flake .";
       clean = "nix-collect-garbage -d";
     };
