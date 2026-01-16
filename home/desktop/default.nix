@@ -39,6 +39,7 @@
   dconf.settings = {
     "org/gnome/shell" = {
       disable-user-extensions = false;
+      disable-extension-version-validation = true; # Versiya tekshiruvini o'chirish (Muhim!)
       enabled-extensions = [
         "gsconnect@andyholmes.github.io"
         "appindicatorsupport@rgcjonas.gmail.com"
