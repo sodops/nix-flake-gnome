@@ -1,0 +1,19 @@
+# Nix build natijalarini ignore qilish
+result
+result-*
+
+# Flake lock faylini saqlaymiz, lekin backup fayllarini ignore qilamiz
+*.lock.bak
+
+# Editor va OS fayllar
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Temporary fayllar
+*.tmp
+*.bak
+*.old
