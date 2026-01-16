@@ -25,12 +25,11 @@
       nixosConfigurations.sodiq = nixpkgs.lib.nixosSystem {
         inherit system;
         
-        # Tizim modullariga 'inputs'ni uzatish (bu juda muhim!)
+        # Tizim modullariga 'inputs'ni uzatish
         specialArgs = { inherit inputs; };
 
         modules = [
           ./configuration.nix
-          ./hardware-configuration.nix
           
           home-manager.nixosModules.home-manager
           {
@@ -38,22 +37,8 @@
             home-manager.useUserPackages = true;
             home-manager.users.sodiq = import ./home.nix;
             
-            # Home Manager modullariga maxsus o'zgaruvchilarni uzatish
+            # Home Manager modullariga barcha inputlarni uzatish
             home-manager.extraSpecialArgs = { inherit inputs; };
-          }
-        ];
-      };
-
-      # standalone konfiguratsiya odatda 'nixos-rebuild' uchun shart emas,
-      # lekin u ham 'inputs'dan foydalanishi kerak
-      homeConfigurations.sodiq = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = { inherit inputs; };
-        modules = [ 
-          ./home.nix 
-          {
-            # inputs'ni module argumenti sifatida ham qo'shamiz
-            _module.args = { inherit inputs; };
           }
         ];
       };

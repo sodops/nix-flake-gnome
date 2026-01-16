@@ -1,111 +1,49 @@
-# Sodiqning NixOS Konfiguratsiyasi
+# Sodiqning NixOS Konfiguratsiyasi (Pro Version)
 
-Custom flake-based NixOS konfiguratsiyasi Home Manager bilan.
+Professional, modulli va flake-based NixOS konfiguratsiyasi.
 
 ## 📁 Struktura
 
+Ushbu konfiguratsiya modulli tizimga asoslangan:
+
 ```
 nixos-config/
-├── flake.nix                  # Flake konfiguratsiyasi
-├── flake.lock                 # Dependencies lock
-├── configuration.nix          # NixOS sistema sozlamalari
-├── hardware-configuration.nix # Apparat konfiguratsiyasi
-└── home.nix                   # Home Manager konfiguratsiyasi
+├── modules/               # Tizim darajasidagi sozlamalar (System-wide)
+│   ├── core/              # Boot, User, Locale, Optimization
+│   ├── desktop/           # GNOME, Display Manager, Audio
+│   ├── networking/        # Network Manager, Firewall
+│   └── programs/          # Tizim dasturlari (System Packages)
+├── home/                  # Foydalanuvchi sozlamalari (Home Manager)
+│   ├── shell/             # Zsh, Starship, Git, Aliases
+│   └── desktop/           # User Apps, Cursor, Theming
+├── hosts/                 # (Kelajak uchun) Turli xil kompyuterlar
+├── flake.nix              # 🚀 Asosiy kirish nuqtasi
+└── Makefile               # Qulay boshqaruv skriptlari
 ```
 
-## 🚀 Qo'llash
+## 🚀 O'rnatish va Yangilash
 
-### Birinchi marta o'rnatish
+Eng oson yo'li (tavsiya etiladi):
 
 ```bash
-# Repositoryni clone qilish
-git clone https://github.com/sodops/nix-flake-gnome.git /home/sodiq/nixos-config
-cd /home/sodiq/nixos-config
-
-# Sistemani yangilash
-make
-
-# Yoki (agar make bo'lmasa)
+# Tizimni yangilash
 ./apply.sh
 
-# Qo'lda yangilash
+# Yoki make orqali
+make
+```
+
+Agar xatolik chiqsa yoki qo'lda bajarish kerak bo'lsa:
+```bash
 sudo nixos-rebuild switch --flake .#sodiq
 ```
 
-### Keyingi yangilanishlar
+## ✨ Yangi Imkoniyatlar
 
-```bash
-cd /home/sodiq/nixos-config
-sudo nixos-rebuild switch --flake .#sodiq
-```
+- **Shell**: Zsh + Starship (Avtomatik to'ldirish va chiroyli prompt).
+- **Git**: Integratsiya qilingan va sozланган.
+- **Tezlik**: Tizim versiyasi muzlatilgan (pinned), ortiqcha yuklashlar yo'q.
+- **Tartib**: Har bir sozlama o'z joyida.
 
-### Faqat Home Manager ni yangilash
-
-```bash
-home-manager switch --flake .#sodiq
-```
-
-### Test qilish (build qilmasdan)
-
-```bash
-# Konfiguratsiya to'g'riligini tekshirish
-nix flake check
-
-# Dry build (hech narsa o'rnatmasdan test)
-sudo nixos-rebuild dry-build --flake .#sodiq
-```
-
-## 📦 O'rnatilgan Paketlar
-
-### GUI Dasturlar
-- Telegram Desktop
-- Google Chrome
-- Discord
-- Spotify
-- VS Code
-- Postman
-- OBS Studio
-- Firefox
-- Antigravity (AI kod yordamchisi)
-
-### DevOps Tools
-- Docker & Docker Compose
-- Kubernetes (kubectl, helm)
-- Terraform
-- Ansible
-
-### Desktop Environment
-- GNOME Desktop
-- GDM Display Manager
-- GSConnect (Android integratsiyasi)
-
-## ⚙️ Asosiy Sozlamalar
-
-- **Bootloader**: systemd-boot (max 2 konfiguratsiya)
-- **Time Zone**: Asia/Tashkent
-- **Locale**: en_US.UTF-8
-- **Cursor**: Bibata Modern Ice
-- **Nix Features**: flakes, nix-command
-- **Garbage Collection**: Haftalik, 7 kundan eski fayllarni o'chirish
-- **ZRAM**: 50% RAM compressed swap
-
-## 🔧 Konfiguratsiyani O'zgartirish
-
-1. Kerakli faylni tahrirlang (`configuration.nix` yoki `home.nix`)
-2. Sistemani yangilang:
-   ```bash
-   sudo nixos-rebuild switch --flake .#sodiq
-   ```
-
-## 📌 Eslatmalar
-
-- Barcha konfiguratsiya flake orqali boshqariladi
-- `/etc/nixos/` dan foydalanish shart emas
-- Hardware konfiguratsiyasini o'zgartirmang (avtomatik yaratilgan)
-- Version control uchun Git ishlatiladi
-
-## 🔗 Foydali Havolalar
-
-- [NixOS Manual](https://nixos.org/manual/nixos/stable/)
-- [Home Manager Manual](https://nix-community.github.io/home-manager/)
-- [Nix Flakes](https://nixos.wiki/wiki/Flakes)
+## 🔗 Linklar
+- Repo: [github.com/sodops/nix-flake-gnome](https://github.com/sodops/nix-flake-gnome)
