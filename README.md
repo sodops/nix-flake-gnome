@@ -1,49 +1,55 @@
-# Sodiqning NixOS Konfiguratsiyasi (Pro Version)
+# NixOS Configuration
 
-Professional, modulli va flake-based NixOS konfiguratsiyasi.
+A modular, flake-based NixOS configuration tailored for stability and reproducibility.
 
-## 📁 Struktura
+## Project Structure
 
-Ushbu konfiguratsiya modulli tizimga asoslangan:
+This configuration adopts a modular architecture separating system-level configuration from user-specific settings:
 
 ```
 nixos-config/
-├── modules/               # Tizim darajasidagi sozlamalar (System-wide)
-│   ├── core/              # Boot, User, Locale, Optimization
-│   ├── desktop/           # GNOME, Display Manager, Audio
-│   ├── networking/        # Network Manager, Firewall
-│   └── programs/          # Tizim dasturlari (System Packages)
-├── home/                  # Foydalanuvchi sozlamalari (Home Manager)
+├── modules/               # System-wide configurations
+│   ├── core/              # Bootloader, User management, Locale, Optimization
+│   ├── desktop/           # Desktop Environment (GNOME), Display Manager
+│   ├── networking/        # NetworkManager, Firewall rules
+│   └── programs/          # System-level packages
+├── home/                  # User-space configurations (Home Manager)
 │   ├── shell/             # Zsh, Starship, Git, Aliases
-│   └── desktop/           # User Apps, Cursor, Theming
-├── hosts/                 # (Kelajak uchun) Turli xil kompyuterlar
-├── flake.nix              # 🚀 Asosiy kirish nuqtasi
-└── Makefile               # Qulay boshqaruv skriptlari
+│   └── desktop/           # User Applications, Theming, Cursor
+├── flake.nix              # Entry point ensuring reproducible dependency versions
+├── configuration.nix      # Main system entry point importing modules
+└── Makefile               # Automation for maintenance tasks
 ```
 
-## 🚀 O'rnatish va Yangilash
+## Management
 
-Eng oson yo'li (tavsiya etiladi):
+### System Updates
+
+To apply changes to the configuration:
 
 ```bash
-# Tizimni yangilash
+# Using the provided script
 ./apply.sh
 
-# Yoki make orqali
+# Alternatively, using Make
 make
 ```
 
-Agar xatolik chiqsa yoki qo'lda bajarish kerak bo'lsa:
+### Manual Rebuild
+
+If manual intervention is required:
+
 ```bash
-sudo nixos-rebuild switch --flake .#sodiq
+sudo nixos-rebuild switch --flake /home/sodiq/nixos-config#sodiq
 ```
 
-## ✨ Yangi Imkoniyatlar
+## Features
 
-- **Shell**: Zsh + Starship (Avtomatik to'ldirish va chiroyli prompt).
-- **Git**: Integratsiya qilingan va sozланган.
-- **Tezlik**: Tizim versiyasi muzlatilgan (pinned), ortiqcha yuklashlar yo'q.
-- **Tartib**: Har bir sozlama o'z joyida.
+- **Shell Environment**: Zsh configured with Starship prompt for enhanced productivity.
+- **Version Pinning**: The `nixpkgs` input is pinned to a specific commit hash to ensure consistent builds and minimize download bandwith.
+- **Desktop Environment**: GNOME optimized with essential extensions (GSConnect, Blur my Shell, Caffeine, etc.).
+- **Reproducibility**: Entire system state is defined declaratively.
 
-## 🔗 Linklar
-- Repo: [github.com/sodops/nix-flake-gnome](https://github.com/sodops/nix-flake-gnome)
+## License
+
+This project is licensed under the MIT License.
