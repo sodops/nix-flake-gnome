@@ -4,7 +4,7 @@
     enable = true;
     settings = {
       init.defaultBranch = "main";
-      user.name = "Sodiq"; # Git username qo'shib qo'ydim
+      user.name = "Sodiq";
       user.email = "sodiq@localhost";
     };
   };
@@ -35,9 +35,6 @@
     
     settings = {
       add_newline = false;
-      message = {
-         disabled = true;
-      };
     };
   };
 }
