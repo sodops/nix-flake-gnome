@@ -3,7 +3,7 @@
   environment.systemPackages = with pkgs; [
     # Core
     vim git curl wget htop neofetch
-    gjs libxml2 gnomeExtensions.gsconnect
+    gjs libxml2 aria2 gnomeExtensions.gsconnect
     
     # DevOps
     docker-compose kubectl kubernetes-helm terraform ansible
