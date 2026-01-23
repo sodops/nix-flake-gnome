@@ -37,4 +37,25 @@
       add_newline = false;
     };
   };
+
+  # Productivity Tools
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.tmux = {
+    enable = true;
+    terminal = "screen-256color";
+    keyMode = "vi";
+    mouse = true;
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
+
+  programs.lazygit.enable = true;
 }

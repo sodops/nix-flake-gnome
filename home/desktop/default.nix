@@ -33,6 +33,14 @@
     obs-studio
     firefox
     inputs.antigravity-nix.packages.${pkgs.system}.default
+    
+    # New Tools
+    notion-app-enhanced
+    flameshot
+
+    # New Extensions
+    gnomeExtensions.tiling-assistant
+    gnomeExtensions.clipboard-indicator
   ];
 
   # GNOME Extensions sozlamalari (yoqish)
@@ -51,6 +59,9 @@
         "impatience@gfxmonk.net"
         "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
         "windowIsReady_Remover@nunofarruca@gmail.com"
+        # New Extensions
+        "tiling-assistant@leleat-on-github"
+        "clipboard-indicator@tudmotu.com"
       ];
     };
   };

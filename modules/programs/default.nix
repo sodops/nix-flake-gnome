@@ -2,9 +2,9 @@
 {
   environment.systemPackages = with pkgs; [
     # Core
-    vim git curl wget htop neofetch
+    vim git curl wget htop neofetch tree zip
     gjs libxml2 aria2 gnomeExtensions.gsconnect
-    
+    obsidian super-productivity logseq
     # DevOps
     docker-compose kubectl kubernetes-helm terraform ansible
     
@@ -19,8 +19,8 @@
   ];
 
   # Virtualization (disabled but present in config)
-  virtualisation.docker.enable = false;
-  virtualisation.libvirtd.enable = false;
+  virtualisation.docker.enable = true;
+  virtualisation.libvirtd.enable = true;
   virtualisation.virtualbox.host.enable = false;
-  programs.virt-manager.enable = false;
+  programs.virt-manager.enable = true;
 }
