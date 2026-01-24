@@ -49,6 +49,27 @@
     terminal = "screen-256color";
     keyMode = "vi";
     mouse = true;
+    escapeTime = 0;  # ESC tugmasi kechikishini olib tashlash
+    baseIndex = 1;   # Oynalarni 0 emas, 1 dan boshlash
+    
+    extraConfig = ''
+      # Yangi oyna ochish: Ctrl+b, c
+      # Oynalar o'rtasida o'tish: Ctrl+b, raqam (1,2,3...)
+      # Panel bo'lish (vertikal): Ctrl+b, |
+      # Panel bo'lish (gorizontal): Ctrl+b, -
+      
+      bind | split-window -h -c "#{pane_current_path}"
+      bind - split-window -v -c "#{pane_current_path}"
+      
+      # Panellar o'rtasida o'tish (Vi uslubida)
+      bind h select-pane -L
+      bind j select-pane -D
+      bind k select-pane -U
+      bind l select-pane -R
+      
+      # Reload config: Ctrl+b, r
+      bind r source-file ~/.config/tmux/tmux.conf \; display "Reloaded!"
+    '';
   };
 
   programs.direnv = {

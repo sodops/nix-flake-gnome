@@ -33,12 +33,9 @@
     obs-studio
     firefox
     inputs.antigravity-nix.packages.${pkgs.system}.default
-    
-    # New Tools
-    notion-app-enhanced
-    flameshot
+  
 
-    # New Extensions
+    # GNOME Extensions
     gnomeExtensions.tiling-assistant
     gnomeExtensions.clipboard-indicator
   ];
