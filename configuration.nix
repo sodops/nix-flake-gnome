@@ -6,5 +6,6 @@
     ./modules/networking
     ./modules/desktop
     ./modules/programs
+    ./modules/waydroid
   ];
 }

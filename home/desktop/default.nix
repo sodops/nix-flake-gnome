@@ -16,7 +16,6 @@
     gnomeExtensions.gsconnect
     gnomeExtensions.appindicator
     gnomeExtensions.app-name-indicator
-    gnomeExtensions.auto-move-windows
     gnomeExtensions.blur-my-shell
     gnomeExtensions.caffeine
     gnomeExtensions.coverflow-alt-tab
@@ -32,8 +31,9 @@
     postman
     obs-studio
     firefox
-    inputs.antigravity-nix.packages.${pkgs.system}.default
-  
+    ayugram-desktop
+    inputs.antigravity.packages.${system}.default
+    inputs.zen-browser.packages."${system}".default
 
     # GNOME Extensions
     gnomeExtensions.tiling-assistant
@@ -49,7 +49,6 @@
         "gsconnect@andyholmes.github.io"
         "appindicatorsupport@rgcjonas.gmail.com"
         "appnameindicator@dev64.xyz"
-        "auto-move-windows@gnome-shell-extensions.gcampax.github.com"
         "blur-my-shell@aunetx"
         "caffeine@patapon.info"
         "CoverflowAltTab@palatis.blogspot.com"
@@ -59,6 +58,9 @@
         # New Extensions
         "tiling-assistant@leleat-on-github"
         "clipboard-indicator@tudmotu.com"
+        # User-installed Extensions (browser orqali)
+        "screentospace@dilzhan.dev"
+        "donotdisturb-button@nls1729"
       ];
     };
   };

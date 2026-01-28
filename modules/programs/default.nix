@@ -2,7 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     # Core
-    vim git curl wget htop neofetch tree zip
+    vim git curl wget htop neofetch tree zip unzip
     gjs libxml2 aria2 gnomeExtensions.gsconnect
     obsidian super-productivity logseq
     # DevOps

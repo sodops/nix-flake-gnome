@@ -4,16 +4,14 @@
   inputs = {
     # Nixpkgs - ma'lum bir versiyaga qulflangan (2026-01-10)
     nixpkgs.url = "github:nixos/nixpkgs/d03088749a110d52a4739348f39a63f84bb0be14"; 
-    
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    antigravity-nix = {
-      url = "github:jacopone/antigravity-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    antigravity.url = "github:jacopone/antigravity-nix";
   };
 
   # 'inputs@' qo'shish orqali barcha inputlarni bitta o'zgaruvchiga olamiz
