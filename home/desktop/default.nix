@@ -12,6 +12,8 @@
   # Paketlar ro'yxati
   home.packages = with pkgs; [
     bibata-cursors
+    gnome-tweaks  # Super tugmasini sozlash uchun
+    
     # GNOME Extensions
     gnomeExtensions.gsconnect
     gnomeExtensions.appindicator
@@ -34,6 +36,9 @@
     ayugram-desktop
     inputs.antigravity.packages.${system}.default
     inputs.zen-browser.packages."${system}".default
+
+    # AppImage support
+    appimage-run
 
     # GNOME Extensions
     gnomeExtensions.tiling-assistant
