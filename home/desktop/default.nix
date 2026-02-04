@@ -40,8 +40,8 @@
     inputs.zen-browser.packages."${system}".default
     temurin-bin-21
     
-    # Screenshot annotation  - Gradia (GNOME uchun)
-    gradia wl-clipboard
+    # Screenshot - GNOME built-in (yengil)
+    wl-clipboard  # Clipboard support
     
 # AppImage support
     appimage-run
@@ -94,18 +94,6 @@
       screenshot = [ "<Shift>Print" ];
       window-screenshot = [ "<Alt>Print" ];
       area-screenshot = [ "<Ctrl>Print" ];
-      
-      # Custom keybind for Gradia (edit screenshot)
-      custom-keybindings = [
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-      ];
-    };
-    
-    # Gradia - edit last screenshot
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      name = "Edit Screenshot with Gradia";
-      command = "gradia";
-      binding = "<Super>Print";
     };
   };
 
