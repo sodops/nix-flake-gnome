@@ -33,12 +33,14 @@ nixos-config/
 ### Bootstrap (First-time installation)
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/sodops/nix-flake-gnome.git ~/nixos-config
    cd ~/nixos-config
    ```
 
 2. **Generate Hardware Config (if on new hardware):**
+
    ```bash
    # Overwrite the existing hardware-configuration.nix with the one for the current machine
    nixos-generate-config --show-hardware-config > hardware-configuration.nix
@@ -53,28 +55,44 @@ nixos-config/
 
 This configuration includes convenient Zsh aliases for common tasks:
 
-| Command     | Description |
-| ----------- | ----------- |
-| `update`    | Rebuilds the system using the flake (applies changes). |
+| Command     | Description                                                          |
+| ----------- | -------------------------------------------------------------------- |
+| `update`    | Rebuilds the system using the flake (applies changes).               |
 | `clean`     | Runs garbage collection (`nix-collect-garbage -d`) to free up space. |
-| `hm-switch` | Applies only Home Manager changes (faster than full system update). |
-| `ll`        | Detailed list of files (`ls -l`). |
+| `hm-switch` | Applies only Home Manager changes (faster than full system update).  |
+| `ll`        | Detailed list of files (`ls -l`).                                    |
 
 ## 📦 Software Overview
 
 ### System Packages
+
 - **DevOps**: Docker, Kubernetes (kubectl, helm), Terraform, Ansible.
 - **Development**: Python 3, Node.js, Git.
 - **Utilities**: Vim, wget, curl, htop, neofetch.
 
 ### User Packages & Extensions
-- **Apps**: VS Code, Chrome, Firefox, Telegram, Discord, Spotify, OBS Studio.
-- **Extensions**: 
+
+- **Apps**: VS Code, Chrome, Firefox, Zen Browser, Telegram, Discord, Spotify, OBS Studio, Obsidian, Postman.
+- **Screenshot**: GNOME built-in screenshot tool with clipboard support.
+- **Extensions**:
   - **GSConnect** (Android integration)
   - **Blur my Shell** (Aesthetics)
   - **Caffeine** (Prevent sleep)
   - **AppIndicator** (Tray icons)
   - **Coverflow Alt-Tab** (Window switching)
+  - **Tiling Assistant** (Window tiling)
+  - **Clipboard Indicator** (Clipboard history)
+
+## ⌨️ Screenshot Shortcuts
+
+| Shortcut        | Action                            |
+| --------------- | --------------------------------- |
+| `Print`         | GNOME screenshot UI (interactive) |
+| `Shift + Print` | Full screen screenshot            |
+| `Ctrl + Print`  | Area selection screenshot         |
+| `Alt + Print`   | Window screenshot                 |
+
+Screenshots are saved to `~/Pictures/` directory.
 
 ## 🔧 Customization
 
