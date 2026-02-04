@@ -1,0 +1,27 @@
+warning: Git tree '/home/sodiq/nixos-config' is dirty
+building the system configuration...
+warning: Git tree '/home/sodiq/nixos-config' is dirty
+activating the configuration...
+setting up /etc...
+reloading user units for sodiq...
+restarting sysinit-reactivation.target
+the following new units were started: NetworkManager-dispatcher.service
+warning: the following units failed: waydroid-mount-shared.service
+× waydroid-mount-shared.service - Waydroid shared folder mount
+     Loaded: loaded (/etc/systemd/system/waydroid-mount-shared.service; enabled; preset: ignored)
+     Active: failed (Result: exit-code) since Sun 2026-02-01 23:27:26 +05; 345ms ago
+   Duration: 9min 44.204s
+ Invocation: abfe6a7b651c4ed887fc952bacae76ec
+    Process: 33000 ExecStart=/nix/store/7rk7xx4w9s8d0w9mlfnvkkdg5jk2n1w3-unit-script-waydroid-mount-shared-start/bin/waydroid-mount-shared-start (code=exited, status=1/FAILURE)
+   Main PID: 33000 (code=exited, status=1/FAILURE)
+         IP: 0B in, 0B out
+         IO: 0B read, 0B written
+   Mem peak: 2M
+        CPU: 8ms
+
+Feb 01 23:27:26 nixos systemd[1]: Starting Waydroid shared folder mount...
+Feb 01 23:27:26 nixos waydroid-mount-shared-start[33016]: mkdir: cannot create directory ‘/var/lib/waydroid/rootfs/data/media’: Read-only file system
+Feb 01 23:27:26 nixos systemd[1]: waydroid-mount-shared.service: Main process exited, code=exited, status=1/FAILURE
+Feb 01 23:27:26 nixos systemd[1]: waydroid-mount-shared.service: Failed with result 'exit-code'.
+Feb 01 23:27:26 nixos systemd[1]: Failed to start Waydroid shared folder mount.
+Command 'systemd-run -E LOCALE_ARCHIVE -E NIXOS_INSTALL_BOOTLOADER --collect --no-ask-password --pipe --quiet --service-type=exec --unit=nixos-rebuild-switch-to-configuration /nix/store/fxjnnixlqq3zrmfp2xfks58q4rl30si3-nixos-system-nixos-25.11.20260110.d030887/bin/switch-to-configuration switch' returned non-zero exit status 4.

@@ -7,5 +7,6 @@
     ./modules/desktop
     ./modules/programs
     ./modules/waydroid
+    ./modules/gaming
   ];
 }

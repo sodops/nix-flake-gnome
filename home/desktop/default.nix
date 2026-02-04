@@ -24,7 +24,8 @@
     gnomeExtensions.impatience
     gnomeExtensions.launch-new-instance
     gnomeExtensions.window-is-ready-remover
-
+    
+    waydroid-helper
     telegram-desktop
     google-chrome
     discord
@@ -34,11 +35,28 @@
     obs-studio
     firefox
     ayugram-desktop
+    gemini-cli
     inputs.antigravity.packages.${system}.default
     inputs.zen-browser.packages."${system}".default
-
-    # AppImage support
+    temurin-bin-21
+    
+    # Screenshot Tools (Wayland compatible)
+    gnome-screenshot  # GNOME's built-in screenshot tool
+    swappy           # Wayland screenshot annotation tool
+    grim             # Wayland screenshot utility
+    slurp            # Wayland screen area selector
+    
+# AppImage support
     appimage-run
+    
+    # Waydroid tools
+    android-tools  # ADB for Waydroid Helper
+
+    # Video Wallpaper for Wayland
+    mpvpaper  # Video wallpaper for Wayland
+    xdotool   # Window manipulation
+    wmctrl    # Window manager control
+    gnome-randr  # GNOME display configuration
 
     # GNOME Extensions
     gnomeExtensions.tiling-assistant
@@ -68,7 +86,83 @@
         "donotdisturb-button@nls1729"
       ];
     };
+    
+    # Screenshot klaviatura tugmalari
+    "org/gnome/shell/keybindings" = {
+      # Print Screen default sozlamalari
+      show-screenshot-ui = [ "Print" ];  # Print tugmasi - screenshot UI
+    };
+    
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      # Screenshot sozlamalari
+      screenshot = [ "<Shift>Print" ];  # Shift+Print - to'liq ekran
+      window-screenshot = [ "<Alt>Print" ];  # Alt+Print - faol oyna
+      area-screenshot = [ "<Ctrl>Print" ];  # Ctrl+Print - tanlangan hudud
+    };
   };
+
+  # Video Wallpaper Service for GNOME
+  # NOTE: Disabled - GNOME Wayland doesn't support background video layers properly
+  # Use ~/nixos-config/scripts/launch-video-wallpaper.sh instead
+  /*
+  systemd.user.services.video-wallpaper = {
+    Unit = {
+      Description = "Video Wallpaper Service for GNOME";
+      After = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
+    };
+
+    Service = {
+      Type = "simple";
+      ExecStart = "${pkgs.writeShellScript "video-wallpaper-gnome" ''
+        # Wait for GNOME to fully load
+        sleep 5
+        
+        # Get monitor name
+        MONITOR=$(${pkgs.gnome-randr}/bin/gnome-randr | grep -m1 "connected" | awk '{print $1}')
+        
+        # Video path
+        VIDEO_PATH="$HOME/.steam/steam/steamapps/workshop/content/431960/2902830928/Minecraft Soothing Scenes – Relaxing Fireplace.mp4"
+        
+        # Kill any existing video wallpaper
+        ${pkgs.procps}/bin/pkill -f "mpv.*wallpaper-video" || true
+        
+        # Start mpv in fullscreen background mode
+        ${pkgs.mpv}/bin/mpv \
+          --loop-file=inf \
+          --no-audio \
+          --no-osc \
+          --no-osd-bar \
+          --no-input-default-bindings \
+          --input-conf=/dev/null \
+          --no-window-dragging \
+          --fullscreen \
+          --no-border \
+          --ontop=no \
+          --no-keepaspect-window \
+          --title="wallpaper-video" \
+          --x11-name="wallpaper-video" \
+          --really-quiet \
+          --hwdec=auto \
+          "$VIDEO_PATH" &
+        
+        # Move window to background layer
+        sleep 2
+        WID=$(${pkgs.xdotool}/bin/xdotool search --name "wallpaper-video" | head -1)
+        if [ -n "$WID" ]; then
+          ${pkgs.xdotool}/bin/xdotool windowmove "$WID" 0 0
+          ${pkgs.wmctrl}/bin/wmctrl -i -r "$WID" -b add,below,skip_taskbar,skip_pager
+        fi
+      ''}";
+      Restart = "on-failure";
+      RestartSec = 10;
+    };
+
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+  };
+  */
 
   # GSConnect background xizmati
   systemd.user.services.gsconnect = {

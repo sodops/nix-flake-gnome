@@ -7,7 +7,7 @@
     obsidian super-productivity logseq
     # DevOps
     docker-compose kubectl kubernetes-helm terraform ansible
-    
+    kdePackages.wallpaper-engine-plugin
     # Dev
     python3 nodejs
     

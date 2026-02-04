@@ -1,0 +1,20 @@
+ acct
+apex
+bin
+bugreports
+cache
+config
+d
+data
+data_mirror
+debug_ramdisk
+dev
+etc
+init
+init.environ.rc
+linkerconfig
+lost+found
+mnt
+mnt_extra
+odm
+
