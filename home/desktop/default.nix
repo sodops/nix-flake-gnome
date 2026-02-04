@@ -40,12 +40,8 @@
     inputs.zen-browser.packages."${system}".default
     temurin-bin-21
     
-    # Screenshot Tools (Wayland compatible - Flameshot alternatives)
-    satty            # Flameshot-inspired annotation tool for Wayland
-    ksnip            # Feature-rich cross-platform screenshot tool
-    grim             # Wayland screenshot capture backend
-    slurp            # Screen area selection for Wayland
-    wl-clipboard     # Clipboard support for Wayland
+    # Screenshot - Satty (Flameshot alternative for Wayland)
+    satty grim slurp wl-clipboard
     
 # AppImage support
     appimage-run
@@ -99,11 +95,10 @@
       window-screenshot = [];
       area-screenshot = [];
       
-      # Custom screenshot keybindings
+      # Custom screenshot keybindings - faqat Satty
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
       ];
     };
     
@@ -121,12 +116,7 @@
       binding = "<Shift>Print";
     };
     
-    # Ksnip - Alternative tool (Ctrl+Shift+Print)
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
-      name = "Open Ksnip";
-      command = "ksnip";
-      binding = "<Ctrl><Shift>Print";
-    };
+
   };
 
   # Video Wallpaper Service for GNOME
