@@ -40,11 +40,12 @@
     inputs.zen-browser.packages."${system}".default
     temurin-bin-21
     
-    # Screenshot Tools (Wayland compatible)
-    gnome-screenshot  # GNOME's built-in screenshot tool
-    swappy           # Wayland screenshot annotation tool
-    grim             # Wayland screenshot utility
-    slurp            # Wayland screen area selector
+    # Screenshot Tools (Wayland compatible - Flameshot alternatives)
+    satty            # Flameshot-inspired annotation tool for Wayland
+    ksnip            # Feature-rich cross-platform screenshot tool
+    grim             # Wayland screenshot capture backend
+    slurp            # Screen area selection for Wayland
+    wl-clipboard     # Clipboard support for Wayland
     
 # AppImage support
     appimage-run
@@ -87,17 +88,44 @@
       ];
     };
     
-    # Screenshot klaviatura tugmalari
+    # Screenshot klaviatura tugmalari - Satty va Ksnip uchun
     "org/gnome/shell/keybindings" = {
-      # Print Screen default sozlamalari
-      show-screenshot-ui = [ "Print" ];  # Print tugmasi - screenshot UI
+      show-screenshot-ui = [];  # Default screenshot UI ni o'chirish
     };
     
     "org/gnome/settings-daemon/plugins/media-keys" = {
-      # Screenshot sozlamalari
-      screenshot = [ "<Shift>Print" ];  # Shift+Print - to'liq ekran
-      window-screenshot = [ "<Alt>Print" ];  # Alt+Print - faol oyna
-      area-screenshot = [ "<Ctrl>Print" ];  # Ctrl+Print - tanlangan hudud
+      # Default screenshot shortcuts ni o'chirish
+      screenshot = [];
+      window-screenshot = [];
+      area-screenshot = [];
+      
+      # Custom screenshot keybindings
+      custom-keybindings = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
+      ];
+    };
+    
+    # Satty - Area screenshot (Print tugmasi)
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+      name = "Screenshot with Satty (Area)";
+      command = "/home/sodiq/nixos-config/scripts/screenshot-satty.sh area";
+      binding = "Print";
+    };
+    
+    # Satty - Fullscreen screenshot (Shift+Print)
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+      name = "Screenshot with Satty (Fullscreen)";
+      command = "/home/sodiq/nixos-config/scripts/screenshot-satty.sh full";
+      binding = "<Shift>Print";
+    };
+    
+    # Ksnip - Alternative tool (Ctrl+Shift+Print)
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
+      name = "Open Ksnip";
+      command = "ksnip";
+      binding = "<Ctrl><Shift>Print";
     };
   };
 
