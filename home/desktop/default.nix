@@ -40,8 +40,8 @@
     inputs.zen-browser.packages."${system}".default
     temurin-bin-21
     
-    # Screenshot - Satty + GNOME Screenshot (for GNOME Wayland)
-    satty gnome-screenshot wl-clipboard
+    # Screenshot annotation  - Gradia (GNOME uchun)
+    gradia wl-clipboard
     
 # AppImage support
     appimage-run
@@ -84,39 +84,29 @@
       ];
     };
     
-    # Screenshot klaviatura tugmalari - Satty va Ksnip uchun
+    # Screenshot keybindings - GNOME default + Gradia
     "org/gnome/shell/keybindings" = {
-      show-screenshot-ui = [];  # Default screenshot UI ni o'chirish
+      show-screenshot-ui = [ "Print" ];  # GNOME screenshot UI
     };
     
     "org/gnome/settings-daemon/plugins/media-keys" = {
-      # Default screenshot shortcuts ni o'chirish
-      screenshot = [];
-      window-screenshot = [];
-      area-screenshot = [];
+      # Enable default GNOME screenshots
+      screenshot = [ "<Shift>Print" ];
+      window-screenshot = [ "<Alt>Print" ];
+      area-screenshot = [ "<Ctrl>Print" ];
       
-      # Custom screenshot keybindings - faqat Satty
+      # Custom keybind for Gradia (edit screenshot)
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
       ];
     };
     
-    # Satty - Area screenshot (Print tugmasi)
+    # Gradia - edit last screenshot
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      name = "Screenshot with Satty (Area)";
-      command = "/home/sodiq/nixos-config/scripts/screenshot-satty.sh area";
-      binding = "Print";
+      name = "Edit Screenshot with Gradia";
+      command = "gradia";
+      binding = "<Super>Print";
     };
-    
-    # Satty - Fullscreen screenshot (Shift+Print)
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-      name = "Screenshot with Satty (Fullscreen)";
-      command = "/home/sodiq/nixos-config/scripts/screenshot-satty.sh full";
-      binding = "<Shift>Print";
-    };
-    
-
   };
 
   # Video Wallpaper Service for GNOME
