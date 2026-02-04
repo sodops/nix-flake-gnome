@@ -5,7 +5,7 @@
     settings = {
       init.defaultBranch = "main";
       user.name = "Sodiq";
-      user.email = "sodiq@localhost";
+      user.email = "sodiq@nixos";
     };
   };
 

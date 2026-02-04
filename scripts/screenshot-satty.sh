@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Screenshot script using grim + satty for GNOME Wayland
+# Screenshot script using GNOME Screenshot + Satty for GNOME Wayland
 # Usage: screenshot-satty.sh [area|full]
 
 set -e
@@ -17,12 +17,12 @@ MODE="${1:-area}"  # Default: area selection
 
 case "$MODE" in
     "area")
-        # Area selection using slurp + grim
-        grim -g "$(slurp)" "$TEMP_FILE"
+        # Area selection using GNOME Screenshot
+        gnome-screenshot -a -f "$TEMP_FILE" 2>/dev/null
         ;;
     "full")
         # Full screen screenshot
-        grim "$TEMP_FILE"
+        gnome-screenshot -f "$TEMP_FILE" 2>/dev/null
         ;;
     *)
         echo "Usage: $0 [area|full]"
@@ -32,21 +32,22 @@ esac
 
 # Check if screenshot was taken successfully
 if [ ! -f "$TEMP_FILE" ]; then
-    notify-send "Screenshot" "Screenshot cancelled or failed" -i error
-    exit 1
+    # User cancelled screenshot
+    exit 0
 fi
 
 # Open in Satty for annotation
-satty --filename "$TEMP_FILE" --output-filename "$FINAL_FILE" --early-exit
+satty --filename "$TEMP_FILE" --output-filename "$FINAL_FILE" --early-exit 2>/dev/null
 
 # Check if user saved the file
 if [ -f "$FINAL_FILE" ]; then
-    notify-send "Screenshot Saved" "Screenshot saved to $FINAL_FILE" -i "$FINAL_FILE"
+    notify-send "Screenshot Saved" "Screenshot saved to $FINAL_FILE" -i "$FINAL_FILE" 2>/dev/null || true
     # Copy to clipboard
-    wl-copy < "$FINAL_FILE"
+    wl-copy < "$FINAL_FILE" 2>/dev/null || true
 else
-    notify-send "Screenshot" "Screenshot cancelled" -i dialog-information
+    notify-send "Screenshot" "Screenshot cancelled" -i dialog-information 2>/dev/null || true
 fi
 
 # Clean up temp file
 rm -f "$TEMP_FILE"
+

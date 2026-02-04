@@ -40,8 +40,8 @@
     inputs.zen-browser.packages."${system}".default
     temurin-bin-21
     
-    # Screenshot - Satty (Flameshot alternative for Wayland)
-    satty grim slurp wl-clipboard
+    # Screenshot - Satty + GNOME Screenshot (for GNOME Wayland)
+    satty gnome-screenshot wl-clipboard
     
 # AppImage support
     appimage-run
