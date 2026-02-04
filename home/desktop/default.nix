@@ -8,16 +8,12 @@
     name = "Bibata-Modern-Ice";
     size = 24;
   };
-
-    size = 24;
-  };
-
   # Custom Desktop Entries
   xdg.desktopEntries = {
     minecraft-launcher = {
       name = "Minecraft Launcher";
       genericName = "Minecraft Launcher";
-      exec = "java -jar /home/sodiq/.config/launcher.jar";
+      exec = "steam-run java -jar /home/sodiq/.config/launcher.jar";
       terminal = false;
       categories = [ "Game" ];
       icon = "utilities-terminal"; # Vaqtincha ikonka
@@ -27,6 +23,7 @@
 
   # Paketlar ro'yxati
   home.packages = with pkgs; [
+    steam-run  # FHS environment for binaries like Minecraft Launcher
     bibata-cursors
     gnome-tweaks  # Super tugmasini sozlash uchun
     
