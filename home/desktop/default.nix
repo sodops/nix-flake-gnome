@@ -67,6 +67,10 @@
     xdotool   # Window manipulation
     wmctrl    # Window manager control
     gnome-randr  # GNOME display configuration
+   
+    python313
+    gcc
+    gnumake
 
     # GNOME Extensions
     gnomeExtensions.tiling-assistant
