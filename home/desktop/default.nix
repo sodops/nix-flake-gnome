@@ -51,8 +51,10 @@
     gemini-cli
     inputs.antigravity.packages.${system}.default
     inputs.zen-browser.packages."${system}".default
+    inputs.kimi-cli.packages.${system}.kimi-cli
     temurin-bin-21
-    
+    github-copilot-cli 
+   
     # Screenshot - GNOME built-in (yengil)
     wl-clipboard  # Clipboard support
     

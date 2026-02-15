@@ -5,6 +5,7 @@
     # Nixpkgs - nixos-25.11 stabil versiyasi (eng so'nggi yangilanishlar bilan)
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11"; 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    kimi-cli.url = "github:MoonshotAI/kimi-cli";
 
     home-manager = {
       url = "github:nix-community/home-manager";
