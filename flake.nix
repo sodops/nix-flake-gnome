@@ -18,11 +18,10 @@
   # 'inputs@' qo'shish orqali barcha inputlarni bitta o'zgaruvchiga olamiz
   outputs = inputs@{ self, nixpkgs, home-manager, ... }: 
     let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
     in {
       nixosConfigurations.sodiq = nixpkgs.lib.nixosSystem {
-        inherit system;
+        system = "x86_64-linux";
         
         # Tizim modullariga 'inputs'ni uzatish
         specialArgs = { inherit inputs; };

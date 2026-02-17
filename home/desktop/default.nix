@@ -1,4 +1,7 @@
 { pkgs, inputs, ... }:
+let
+  system = "x86_64-linux";
+in
 {
   # Faqat kursor sozlamalari
   home.pointerCursor = {
@@ -54,10 +57,19 @@
     inputs.kimi-cli.packages.${system}.kimi-cli
     temurin-bin-21
     github-copilot-cli 
-   
+
+    #Productivity
+    safeeyes
+    gnome-pomodoro
+    blanket
+    obsidian
+    super-productivity
+    logseq
+
     # Screenshot - GNOME built-in (yengil)
     wl-clipboard  # Clipboard support
     
+
 # AppImage support
     appimage-run
     
