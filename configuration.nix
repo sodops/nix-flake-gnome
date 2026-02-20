@@ -6,7 +6,7 @@
     ./modules/networking
     ./modules/desktop
     ./modules/programs
-    # ./modules/waydroid  # Vaqtincha o'chirilgan - systemd service muammosi
+    ./modules/waydroid
     ./modules/gaming
   ];
 }

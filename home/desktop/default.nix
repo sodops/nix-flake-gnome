@@ -41,6 +41,8 @@ in
     gnomeExtensions.launch-new-instance
     gnomeExtensions.window-is-ready-remover
     
+    weston
+    cage
     waydroid-helper
     telegram-desktop
     google-chrome
@@ -57,7 +59,7 @@ in
     inputs.kimi-cli.packages.${system}.kimi-cli
     temurin-bin-21
     github-copilot-cli 
-
+    pinta
     #Productivity
     safeeyes
     gnome-pomodoro

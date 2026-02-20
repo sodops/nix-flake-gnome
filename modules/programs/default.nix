@@ -4,7 +4,7 @@
     # Core
     vim git curl wget htop neofetch tree zip unzip
     gjs libxml2 aria2 gnomeExtensions.gsconnect
-    
+    gh gparted
     # DevOps
     docker-compose kubectl kubernetes-helm terraform ansible
     kdePackages.wallpaper-engine-plugin

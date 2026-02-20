@@ -12,6 +12,11 @@
     "net.ipv6.conf.all.forwarding" = 1;
   };
   
-  # Foydalanuvchini waydroid guruhiga qo'shish
-  users.users.sodiq.extraGroups = [ "waydroid" ];
+  # Foydalanuvchini waydroid va input guruhlariga qo'shish
+  users.users.sodiq.extraGroups = [ "waydroid" "input" ];
+
+  # Udev qoidalari: /dev/uinput uchun ruxsatlar (Keymapper ishlashi uchun)
+  services.udev.extraRules = ''
+    KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
+  '';
 }

@@ -32,4 +32,10 @@
 
   # Enable GameMode service
   programs.gamemode.enable = true;
+
+  # Enable Gamescope (Wayland compositor)
+  programs.gamescope = {
+    enable = true;
+    capSysNice = true; # Grant CAP_SYS_NICE capability for better performance
+  };
 }
