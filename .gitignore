@@ -13,6 +13,9 @@ result-*
 *~
 .DS_Store
 
+# Secret fayllar (API kalitlar)
+secrets.nix
+
 # Temporary fayllar
 *.tmp
 *.bak

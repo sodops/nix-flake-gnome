@@ -1,4 +1,8 @@
 { config, pkgs, inputs, ... }:
+let
+  secretsFile = ./secrets.nix;
+  secrets = if builtins.pathExists (toString secretsFile) then import secretsFile else {};
+in
 {
   imports = [
     ./home/shell
@@ -10,4 +14,6 @@
   programs.home-manager.enable = true;
   home.enableNixpkgsReleaseCheck = false;
   home.stateVersion = "24.11";
+
+  home.sessionVariables = secrets;
 }

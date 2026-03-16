@@ -1,23 +1,5 @@
 { pkgs, inputs, ... }:
-let
-  system = "x86_64-linux";
-  pixora-icon-theme = pkgs.stdenvNoCC.mkDerivation {
-    pname = "pixora-icon-theme";
-    version = "2026-02-23";
-    src = pkgs.fetchFromGitHub {
-      owner = "tsora1603";
-      repo = "pixora-theme";
-      rev = "main";
-      hash = "sha256-UnokjC7wak/iGWDQ3c0vafo2e3QUJ+DKfbOho/D6mDs=";
-    };
-    installPhase = ''
-      mkdir -p $out/share/icons
-      cp -r * $out/share/icons/
-    '';
-  };
-in
 {
-  # Faqat kursor sozlamalari
   home.pointerCursor = {
     gtk.enable = true;
     x11.enable = true;
@@ -33,7 +15,7 @@ in
       exec = "steam-run java -jar /home/sodiq/.config/launcher.jar";
       terminal = false;
       categories = [ "Game" ];
-      icon = "utilities-terminal"; # Vaqtincha ikonka
+      icon = "minecraft"; 
       type = "Application";
     };
   };
@@ -50,13 +32,16 @@ in
     gnomeExtensions.app-name-indicator
     gnomeExtensions.blur-my-shell
     gnomeExtensions.caffeine
-    gnomeExtensions.coverflow-alt-tab
     gnomeExtensions.impatience
     gnomeExtensions.launch-new-instance
     gnomeExtensions.window-is-ready-remover
    #gnomeExtensions.screentospace
     gnomeExtensions.tiling-assistant
     gnomeExtensions.clipboard-indicator
+    # Yangi extensionlar
+    gnomeExtensions.just-perfection
+    gnomeExtensions.space-bar
+    gnomeExtensions.user-themes
 
 
 
@@ -72,33 +57,27 @@ in
     firefox
     ayugram-desktop
     gemini-cli
+    claude-code
     inputs.antigravity.packages.${system}.default
     temurin-bin-21
     github-copilot-cli 
     pinta
-    pixora-icon-theme
    
     #Productivity
     safeeyes
-    gnome-pomodoro
     blanket
     obsidian
     super-productivity
-    logseq
-    planner
     morgen
 
-    # Screenshot - GNOME built-in (yengil)
     wl-clipboard  # Clipboard support
-    
     # AppImage support
     appimage-run
-    
-    # Waydroid tools
     android-tools  # ADB for Waydroid Helper
     gnome-randr  # GNOME display configuration
     python313
     gcc
+    distrobox
     gnumake
 
   ];
@@ -120,13 +99,30 @@ in
         "tiling-assistant@leleat-on-github"
         "clipboard-indicator@tudmotu.com"
         "screentospace@dilzhan.dev"
+        # Yangi extensionlar
+        "just-perfection-desktop@just-perfection"
+        "space-bar@luchrioh"
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
       ];
     };
-    "org/gnome/desktop/interface" = {
-      icon-theme = "Pixora";
+  };
+
+  # Waydroid desktop entrylarini o'chirib turuvchi service
+  systemd.user.services.remove-waydroid-desktop-entries = {
+    Unit = {
+      Description = "Remove Waydroid desktop entries";
+      After = [ "graphical-session.target" ];
+    };
+    Service = {
+      Type = "oneshot";
+      ExecStart = "/bin/sh -c 'rm -f %h/.local/share/applications/waydroid.*.desktop %h/.local/share/applications/Waydroid.desktop'";
+      RemainAfterExit = true;
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
     };
   };
-   
+
   # GSConnect background xizmati
   systemd.user.services.gsconnect = {
     Unit = {

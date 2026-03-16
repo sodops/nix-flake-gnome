@@ -8,7 +8,7 @@
     kimi-cli.url = "github:MoonshotAI/kimi-cli";
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -33,6 +33,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
             home-manager.users.sodiq = import ./home.nix;
             
             # Home Manager modullariga barcha inputlarni uzatish
