@@ -2,7 +2,8 @@
 {
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
-  networking.extraHosts = 
+
+  networking.extraHosts =
 	''
 	100.117.101.125   mess.sodops.local
 	100.117.101.125   py.sodops.local	
@@ -33,6 +34,7 @@
   };};
   programs.mosh.enable = true;
   services.tailscale.enable = true;
+
   # Enable systemd-resolved for better DNS resolution
   services.resolved.enable = true;
 }
